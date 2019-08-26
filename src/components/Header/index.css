@@ -1,0 +1,70 @@
+.header{
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(66, 66, 66, 0.1);
+}
+
+.header .breadcrumb {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  border-top: 1px solid #f9c700;
+}
+
+.header .breadcrumb .breadcrumb-title {
+  width: 150px;
+  height: 100%;
+  font-size: 18px;
+  text-align: center;
+  display: inline-block;
+}
+.header .breadcrumb .breadcrumb-title::after {
+  position: absolute;
+  content: '';
+  left: 60px;
+  top: 39px;
+  border-top: 9px solid #fff;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+}
+.header .breadcrumb .weather {
+  text-align: right;
+  float: right;
+}
+
+.header .breadcrumb .weather .date{
+  margin-right: 10px;
+}
+
+.header-top{
+  height: 60px;
+  line-height: 60px;
+  padding: 0 20px;
+  text-align: right;
+}
+
+.header-top .logo {
+  line-height: 60px;
+  text-align: left;
+  font-size: 18px;
+};
+
+.header-top .logo img{
+  height: 40px;
+  vertical-align: middle;
+}
+.header-top .logo span{
+  margin-left: 5px;
+}
+
+.header-top a {
+  margin-left: 40px;
+}
+.header-top .logout {
+  margin-left:40px;
+}
+
+.simple-page .header-top{
+  background:#1890ff;
+  color: #fff;
+}
