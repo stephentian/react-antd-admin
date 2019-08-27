@@ -54,6 +54,19 @@ Create Header, Footer, NavLeft in `components`.
 
 #### Use react-router
 
-```
-yarn add react-router-dom
-```
+1. import react-router
+    ```
+    yarn add react-router-dom
+    ```
+
+2. create router.js
+    ```
+    import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+    // ...
+    ```
+3. modify `NavLeft`
+    ```
+    import { NavLink } from 'react-router-dom';
+    // ...
+    <NavLink to={item.key}>{item.title}</NavLink>
+    ```
