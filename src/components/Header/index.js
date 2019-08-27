@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button, Modal } from 'antd';
 import MenuConfig from '../../config/menuConfig';
 import './index.css';
-
+import Util from '../../utils/utils';
 const { confirm } = Modal
 
 class Header extends Component {
@@ -12,7 +12,7 @@ class Header extends Component {
       username: 'Stephen Tian'
     }
     setInterval(() => {
-      let systemTime = new Date().getTime()
+      let systemTime = Util.formateTime(new Date())
       this.setState({
         systemTime
       })
