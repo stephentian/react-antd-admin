@@ -22,7 +22,7 @@ Open http://localhost:3000 to view it in the browser
 #### Create the project
 
 ```
-create react-app react-antd-admin
+create-react-app react-antd-admin
 cd react-antd-admin
 npm start
 ```
@@ -69,4 +69,51 @@ Create Header, Footer, NavLeft in `components`.
     import { NavLink } from 'react-router-dom';
     // ...
     <NavLink to={item.key}>{item.title}</NavLink>
+    ```
+
+## Use Redux
+
+src 下新建 redux 文件夹,
+并建立 action, reducer, store 文件.
+
+1. action 里构建事件名称返回对象
+2. reducer 构建函数
+3. store 里
+    ```
+    // 引入 createStore 保存数据
+    import { createStore } from 'redux';
+    ```
+4. 根组件
+    ```
+    import { Provider } from 'react-redux';
+    import iniStore from './redux/store'
+    const store = iniStore()
+
+    <Provider store={store}>
+      <IRouter />
+    </Provider>
+    ```
+5. 组件连接 redux, 并触发事件
+    ```
+    import { connect } from "react-redux"; // 连接器
+    import { switchMenu } from "../../redux/action";
+    
+    // 事件派发
+    const { dispatch } = this.props
+    dispatch(switchMenu(item.props.title))
+    
+    export default connect()(NavLeft)
+    ```
+6. 接收数据
+    ```
+    import {connect} from "react-redux";
+
+    const mapStateToProps = state => {
+      console.log(state)
+      return {
+        menuName: state.menuName
+      }
+    }
+
+    export default connect(mapStateToProps)(Header)
     ```

@@ -3,6 +3,9 @@ import { Row, Col, Button, Modal } from 'antd';
 import MenuConfig from '../../config/menuConfig';
 import './index.css';
 import Util from '../../utils/utils';
+import {connect} from "react-redux";
+import {switchMenu} from "../../redux/action";
+
 const { confirm } = Modal
 
 class Header extends Component {
@@ -27,10 +30,18 @@ class Header extends Component {
   }
   // 路由变化会触发 componentWillReceiveProps
   componentWillReceiveProps() {
-    this.handleMenuUpdate(MenuConfig)
+    // this.handleMenuUpdate(MenuConfig)
   }
+  // static getDerivedStateFromProps(props, state) {
+  //   if (props.location !== state.location) {
+  //     this.handleMenuUpdate(MenuConfig)
+  //   }
+  //   return null
+  // }
   handleMenuUpdate = (data) => {
     let currentKey = window.location.hash.replace(/#|\?.*$/g, "")
+    const {dispatch} = this.props
+
     let obj = []
     data.map((item) => {
       if (item.children) {
@@ -42,9 +53,10 @@ class Header extends Component {
     const menuName = obj
     menuName.forEach((item) => {
       if (currentKey === item.key) {
-        this.setState({
-          MenuName: item.title
-        })
+        // this.setState({
+        //   MenuName: item.title
+        // })
+        dispatch(switchMenu(item.title))
       }
     })
   }
@@ -77,7 +89,7 @@ class Header extends Component {
           </Col>
         </Row>
         <Row className="breadcrumb">
-          <Col className="breadcrumb-title">{this.state.MenuName}</Col>
+          <Col className="breadcrumb-title">{this.props.menuName}</Col>
           <Col className="weather">
             <span className="date">{this.state.systemTime}</span>
             <span className="weather-detail">{this.state.weather}</span>
@@ -88,4 +100,12 @@ class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    menuName: state.menuName
+  }
+}
+
+export default connect(mapStateToProps)(Header)
+// export default Header

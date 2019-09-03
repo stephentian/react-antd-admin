@@ -5,8 +5,16 @@ import 'antd/dist/antd.css';
 // import Layout from './Layout';
 import IRouter from './router'
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import iniStore from './redux/store'
 
-ReactDOM.render(<IRouter />, document.getElementById('root'));
+const store = iniStore()
+ReactDOM.render(
+  <Provider store={store}>
+    <IRouter />
+  </Provider>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

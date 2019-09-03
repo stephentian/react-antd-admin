@@ -13,6 +13,22 @@ export default {
     let date = new Date(time)
     return `${date.getFullYear()}-${checkTime(date.getMonth() + 1)}-${checkTime(date.getDate())} ${checkTime(date.getHours())}:${checkTime(date.getMinutes())}:${checkTime(date.getSeconds())}`
   },
+  // 分页
+  pagination(data, callback) {
+    let page = {
+      onChange: (current) => {
+        callback(current)
+      },
+      current: data.page,
+      pageSize: data.page_size,
+      total: data.total,
+      showTotal: () => {
+        return `共${data.total}条`
+      },
+      showQuikJumper: true
+    }
+    return page
+  },
   // 封装 Option
   getOptionList(data) {
     if (!data) {
@@ -23,5 +39,20 @@ export default {
       return options.push(<Option value={item.id} key={item.id}>{item.name}</Option>)
     })
     return options
+  },
+  // ETabel 行点击通用函数
+  updateSelectedItem(selectedRowKeys, selectedRows, selectedIds) {
+    if (selectedIds) {
+      this.setState({
+        selectedRowKeys,
+        selectedIds: selectedIds,
+        selectedItem: selectedRows
+      })
+    } else {
+      this.setState({
+        selectedRowKeys,
+        selectedItem: selectedRows
+      })
+    }
   }
 }
