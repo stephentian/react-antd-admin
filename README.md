@@ -73,6 +73,12 @@ Create Header, Footer, NavLeft in `components`.
 
 ## Use Redux
 
+```
+yarn add redux --save
+ 
+yarn add react-redux --save
+```
+
 src 下新建 redux 文件夹,
 并建立 action, reducer, store 文件.
 
